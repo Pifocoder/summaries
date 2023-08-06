@@ -1,0 +1,241 @@
+{
+  "main": {
+    "id": "73dae29e132db512",
+    "type": "split",
+    "children": [
+      {
+        "id": "31748144af085913",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f41893d54d8d48df",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Бэкенд/ШБР лекторий/Проектирование HTTP API.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b2bab3b5597783df",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Бэкенд/Flutter/Dart.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "1bb0ec833e007f6a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Базы данных/Контрольная 3.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9d8eadbcce3f1732",
+    "type": "split",
+    "children": [
+      {
+        "id": "0dd4a85931b893c7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "eeddf7e5af19f525",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a7e303e253f6c87e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "4b408e2f55fb6545",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "b2da745982f4dacf",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ce25447f13b505a0",
+    "type": "split",
+    "children": [
+      {
+        "id": "efcd5f5efd4b1077",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "914c966c095f5be0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Бэкенд/ШБР лекторий/Проектирование HTTP API.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0d0f3e3a286b0b8b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Бэкенд/ШБР лекторий/Проектирование HTTP API.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0b6f4ec7693846aa",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "088b9357eaeb66cc",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Бэкенд/ШБР лекторий/Проектирование HTTP API.md"
+              }
+            }
+          },
+          {
+            "id": "263edb17492efc26",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "canvas:Создать новый холст": false,
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
+    }
+  },
+  "active": "f41893d54d8d48df",
+  "lastOpenFiles": [
+    "Фронтенд (copy)/Лекции практикум 1 семестр/7) Animations.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр/6.5) Webpack.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр/6) npm и yarn и версионирование.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр/5) Асинхронность + API.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр/4) ООП и работа с DOM.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр/3) Валидация форм.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр/1,5) Шрифты.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр/2) Java Script базовый.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр/1) Адаптивная верстка.md",
+    "Фронтенд (copy)/Лекции практикум 1 семестр",
+    "Фронтенд (copy)",
+    "images/Pasted image 20230806134923.png",
+    "images/Pasted image 20230806134736.png",
+    "images/Pasted image 20230806134717.png",
+    "images/Pasted image 20230806134700.png",
+    "images/Pasted image 20230806134619.png",
+    "images/Pasted image 20230806133605.png",
+    "images/Pasted image 20230806133453.png",
+    "images/Pasted image 20230806132755.png",
+    "images/Pasted image 20230806132657.png",
+    "images/Pasted image 20230806132148.png",
+    "Пушествие.md",
+    "МФТИ приехал в школу.md",
+    "Тренировка .md.md",
+    "Бэкенд/ШБР лекторий/Проектирование HTTP API.md",
+    "2023-08-04.md",
+    "Бэкенд/ШБР лекторий/Архитектура кода.md",
+    "Бэкенд/Flutter/Навигация.md",
+    "Бэкенд/Flutter/Dart.md",
+    "Базы данных/Контрольная 3.md",
+    "Бэкенд/Flutter/Вводная.md",
+    "Бэкенд/ШБР лекторий",
+    "Базы данных/Архитектура PostgreSQL.md",
+    "Бэкенд/Flutter/Асинхронность, networking.md",
+    "Бэкенд/Экзамен по C++.md",
+    "error.md",
+    "Мыслишки.md",
+    "Бэкенд/C++ семинары/Мета программирование.md",
+    "Мета прошраммирование.md",
+    "Бэкенд/Flutter",
+    "Репет олимп прога",
+    "Фронтенд",
+    "Проекты",
+    "Бэкенд",
+    "Проекты/Анализатор",
+    "Без названия.canvas",
+    "images"
+  ]
+}
