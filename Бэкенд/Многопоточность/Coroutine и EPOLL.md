@@ -202,3 +202,248 @@ TEST_CASE("CoroTest", "Test") {
 	task.handle.destroy();
 }
 ```
+
+Продолжаем писать нашу coroutine.
+```cpp
+#include <coroutine>
+
+//простая stateless coroutine
+class Task {
+public:
+	struct TaskPromise {
+		Task get_return_object() {
+			return Task{this};	
+		}
+		std::suspend_always initial_suspend() noexcept {
+			return {};
+		}
+		std::suspend_always final_suspend() {
+			if (Continuation) {
+				Continuation.resume();
+			}
+			return {};
+		}
+		void return_void() {//будет вызван при завершении coroutine
+			
+		}
+		void unhandled_exception() {// будет вызван, когда в теле coroutine бросят исключени и не поймают
+			 abort();
+		}
+		std::coroutine_handle<> Continuation;
+	};
+
+	bool await_ready() {
+		return false;
+	}
+	void await_suspend(std::coroutine_handle<> handle) {
+		handle.promise().Continuation = handle;
+		std::coroutine_handle<TaskPromise>::from_promise(*Promise_).resume();
+	}
+	void await_resume() {
+		
+	}
+	using promise_type = TaskPromise;
+	void Run() {
+		std::coroutine_handle<TaskPromise>::from_promise(*Promise_).resume();
+	}
+	~Task() {
+		std::coroutine_handle<TaskPromise>::from_promise(*Promise_).destroy();
+	}
+private:
+	Task(TaskPromise* promise) : Promise_(promise) {}
+	std::coroutine_handle<> handle;
+	TaskPromise* Promise_;
+}
+
+class ManualSheduler {
+public:
+	void Resume() {
+		Handle_.resume();
+		Handle_ = std::coroutine_handle<>{};
+	}
+	void Shedule(std::coroutine_handle<> handle) {
+		Handle_ = handle;
+	}
+private:
+	std::coroutine_handle<> Handle_;
+}
+
+struct ManualSheduleAwaitable {
+	ManualSheduleAwaitable(ManualSheduler& sheduler) : Sheduler_(sheduler) {}
+	
+	bool await_ready() {
+		return false;
+	}
+	void await_suspend(std::coroutine_handle<> handle) {
+		Sheduler_.Schedule(handle);
+	}
+    void await_resume() {
+	}
+	private:
+	ManualSheduler Sheduler_;
+}
+
+Task coro_func(int& value, ManualSheduler& sheduler) {
+	auto value  = 1;
+	auto awaitable = ManualSheduleAwaitable{sheduler};
+	co_await awaitable;
+	// преобразование компилятора строчки co_await awaitable; в следущее:
+	//if (awaitable.await_ready()) {
+	//    return awaitable.await_resume();
+	//} else {
+	//   Save local variables in state, save suspend index
+	//   awaitable.await_suspend(coro_handle);
+	//   return to caller
+	//    
+	//   someone calls coro_handle.resume()
+	//   resume
+	//}
+	//
+	value  = 2;
+	co_return;
+}
+
+TEST_CASE("CoroTest", "Test") {
+	ManualSheduler sheduler;
+	int value = 0;
+	auto coro = coro_func(value, sheduler);
+	REQUIRE(value == 1);
+	sheduler.Resume();
+	REQUIRE(value == 2
+	);
+}
+
+```
+>[!bug]
+>Проблема c деструтктором 
+
+>[!success]
+> add FinalSuspendAwaitable
+```cpp
+#include <coroutine>
+
+//простая stateless coroutine
+class Task {
+public:
+	struct TaskPromise {
+		Task get_return_object() {
+			return Task{this};	
+		}
+		std::suspend_always initial_suspend() noexcept {
+			return {};
+		}
+		auto final_suspend() noexcept {
+			struct FinalSuspendAwaitable {
+				bool await_ready() {
+					return false;
+				}
+				void await_suspend(std::coroutine_handle<TaskPromise> handle) {
+					if (handle.promise().Continuation) {
+						handle.promise().Continuation.resume();
+					}
+				}
+				void await_resume noexcept {}
+			}
+			
+			return FinalSuspendAwaitable{};
+		}
+		void return_void() {//будет вызван при завершении coroutine
+			
+		}
+		void unhandled_exception() {// будет вызван, когда в теле coroutine бросят исключени и не поймают
+			 abort();
+		}
+		std::coroutine_handle<> Continuation;
+	};
+
+	bool await_ready() {
+		return false;
+	}
+	void await_suspend(std::coroutine_handle<> handle) {
+		handle.promise().Continuation = handle;
+		std::coroutine_handle<TaskPromise>::from_promise(*Promise_).resume();
+	}
+	void await_resume() {
+		
+	}
+	using promise_type = TaskPromise;
+	void Run() {
+		std::coroutine_handle<TaskPromise>::from_promise(*Promise_).resume();
+	}
+	~Task() {
+		std::coroutine_handle<TaskPromise>::from_promise(*Promise_).destroy();
+	}
+private:
+	Task(TaskPromise* promise) : Promise_(promise) {}
+	std::coroutine_handle<> handle;
+	TaskPromise* Promise_;
+}
+
+class ManualSheduler {
+public:
+	void Resume() {
+		Handle_.resume();
+		Handle_ = std::coroutine_handle<>{};
+	}
+	void Shedule(std::coroutine_handle<> handle) {
+		Handle_ = handle;
+	}
+private:
+	std::coroutine_handle<> Handle_;
+}
+
+struct ManualSheduleAwaitable {
+	ManualSheduleAwaitable(ManualSheduler& sheduler) : Sheduler_(sheduler) {}
+	
+	bool await_ready() {
+		return false;
+	}
+	void await_suspend(std::coroutine_handle<> handle) {
+		Sheduler_.Schedule(handle);
+	}
+    void await_resume() {
+	}
+	private:
+	ManualSheduler Sheduler_;
+}
+
+Task coro_func(int& value, ManualSheduler& sheduler) {
+	auto value  = 1;
+	auto awaitable = ManualSheduleAwaitable{sheduler};
+	co_await awaitable;
+	// преобразование компилятора строчки co_await awaitable; в следущее:
+	//if (awaitable.await_ready()) {
+	//    return awaitable.await_resume();
+	//} else {
+	//   Save local variables in state, save suspend index
+	//   awaitable.await_suspend(coro_handle);
+	//   return to caller
+	//    
+	//   someone calls coro_handle.resume()
+	//   resume
+	//}
+	//
+	value  = 2;
+	co_return;
+}
+
+TEST_CASE("CoroTest", "Test") {
+	ManualSheduler sheduler;
+	int value = 0;
+	auto coro = coro_func(value, sheduler);
+	REQUIRE(value == 1);
+	sheduler.Resume();
+	REQUIRE(value == 2
+	);
+}
+
+```
+>[!bug]
+>возобновление корутины через await_suspend приводит к переполнению стэки при большом количестве итераций
+
+>[!success]
+>из await_suspend будем возвращать корутину, которую надо будет возобновить (как в доках)
+>код надо изменить как await_suspend, так и в final_suspend
+
+
+
