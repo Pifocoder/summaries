@@ -19,14 +19,12 @@ Layer - оптимизирует рендеринг
 Сравнени Element и Widget:
 1) Element может меняться, Widget - нет
 2) ...
-
 Методы элемента
 1) updateChild
 2) inflateWidget
 3) mount
 4) update - поменяли у виджета параметры
 5) deactivate/activate - удаляем/добавляем в дерево
-
 Методы виджета:
 1) reassemble - дебажная фича
 2) didChangeDependencies - реагирует на смену состояния Inhereted Widget
@@ -37,6 +35,7 @@ Layer - оптимизирует рендеринг
 7) dispose - удаление навсегда
 8) performeRebuild - вызывает build у виджета
 [example](https://gist.github.com/artembark/b579c55af442bc280d1190dd6898ce6f)
+[lifecycle example](https://github.com/glebosotov/flutter-education-widget-lifecycle)
 
 Сравение Stateless и Statefull виджетов:
 Stateless вызывает ребилд,  при каждом изменении состояния, а у statefull rebuild вызвается в setState.
@@ -58,16 +57,18 @@ BuildContext - абстрактный класс и его имплементи�
 ### Как работают layout
 constraints - идут вниз по дереву
 sizes -  идут вверх по дереву
+[example](https://github.com/glebosotov/flutter-education-layout)
 [demo](https://medium.com/flutter-community/flutter-the-advanced-layout-rule-even-beginners-must-know-edc9516d1a2)
 ### Scroll performance
 shrinkWrap - говорит ListView посчитать высоту всех детей.
 itemExtend - задает константную высоту элементов
+[example](https://github.com/glebosotov/flutter-education-scroll-performance)
 ## Slivers
 Они помогают делать классные скролящиеся штуки
 Например, когда там нужно, чтобы в скролящемся месте был и List, а после него Grid.
 Можно это реализовать с помощью колонки, но тогда, если список большой, то все будет грузиться сразу, поэтому все будет очень долго.
 Большой исчерпывающий пример использования: [habr](https://habr.com/ru/articles/657215/)
-
+[example](https://github.com/glebosotov/flutter-education-slivers)
 ## Отладка
 Devtools:
 * widget inspector - можно посмотреть все внутрянку виджетов(размеры, constraint) в RunTime.
