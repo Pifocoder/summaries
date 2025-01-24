@@ -1,3 +1,6 @@
+https://p.go.manytask.org/05-concurrency
+https://dave.cheney.net/2014/03/19/channel-axioms
+
 Конкурентность - нам нужен результат от параллельного запроса
 параллельность - независимость
 ![[Pasted image 20231205182056.png]]
