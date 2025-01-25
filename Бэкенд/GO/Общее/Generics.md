@@ -1,3 +1,6 @@
+>[!important]
+>Generic типы переходят в обычные типы на этапе компиляции
+
 A type parameter list
 ```go
 [P, Q aConstraint, R anotherConstraint]
