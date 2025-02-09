@@ -1,1 +1,0 @@
-https://github.com/avelino/awesome-go#data-structures
